@@ -10,16 +10,8 @@ pub struct Cli {
 
 #[derive(Subcommand)]
 pub enum Commands {
-    /// Randomize filenames in a directory
-    Randomize {
-        /// Directory path to randomize
-        path: PathBuf,
-    },
-    /// Restore files using a mapping file
-    Restore {
-        /// Path to the mapping file
-        path: PathBuf,
-    },
+    Randomize { path: PathBuf },
+    Restore { path: PathBuf },
 }
 
 fn new() -> Cli {

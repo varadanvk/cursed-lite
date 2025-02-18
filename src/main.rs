@@ -17,7 +17,6 @@ fn main() {
             let mapping = mapper.map(files);
             println!("{:?}", mapping);
 
-            // Perform the renaming and handle potential errors
             for (original, new_name) in &mapping {
                 let original_path = Path::new(original);
                 let parent = original_path.parent().unwrap_or(Path::new(""));
@@ -33,7 +32,6 @@ fn main() {
                 }
             }
 
-            // Save the mapping to a file
             let mapping_path = format!("{}/mappings.json", path_str);
             if let Err(e) = mapper.save_mapping(&mapping_path) {
                 eprintln!("Error saving mapping: {}", e);
@@ -48,7 +46,6 @@ fn main() {
             let mapping = mapper.restore(old_mappings);
             println!("{:?}", mapping);
 
-            // Perform the renaming and handle potential errors
             for (original, new_name) in &mapping {
                 let original_path = Path::new(original);
                 let parent = original_path.parent().unwrap_or(Path::new(""));
@@ -65,13 +62,12 @@ fn main() {
                 }
             }
 
-            // Save the mapping to a file
             let mapping_path = format!("{}/mappings.json", path_str);
             if let Err(e) = mapper.save_mapping(&mapping_path) {
                 eprintln!("Error saving mapping: {}", e);
             }
 
-            println!("Randomization complete!"); // TODO: Implement restore functionality
+            println!("Randomization complete!");
         }
     }
 }

@@ -28,7 +28,7 @@ impl Mapper {
         let random_names: Vec<String> = self.randomizer.randomize(&files);
         for (i, file) in files.iter().enumerate() {
             let file_dir_path = file.clone();
-            //remove the file name from the path
+            // we're splitting the path by / and taking all but the last element
             let file_dir_path = file_dir_path
                 .split("/")
                 .collect::<Vec<&str>>()
@@ -46,7 +46,6 @@ impl Mapper {
     pub fn restore(&mut self, mapping: HashMap<String, String>) -> HashMap<String, String> {
         let mut reversed_map = HashMap::new();
         for (original_path, random_name) in mapping {
-            // Get the parent directory from the original path
             let path = std::path::Path::new(&original_path);
             let parent = path
                 .parent()
@@ -54,9 +53,7 @@ impl Mapper {
                 .to_str()
                 .unwrap_or("");
 
-            // Construct full path only for the random file
             let random_path = format!("{}/{}.py", parent, random_name);
-            // Original path is already complete, so use it directly
             reversed_map.insert(random_path, original_path);
         }
         reversed_map
