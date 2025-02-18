@@ -123,6 +123,7 @@ dependencies = [
  "anyhow",
  "clap",
  "rand",
+ "serde",
  "serde_json",
 ]
 
